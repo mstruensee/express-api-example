@@ -1,0 +1,41 @@
+{
+	"name": "hadouken",
+	"version": "0.0.0",
+	"applicationVersion": "0.0.0",
+	"description": "api server.",
+	"main": "dist/server.js",
+	"scripts": {
+		"build": "webpack --progress",
+		"start": "cross-env NODE_ENV=developement ENVIRONMENT=local && nodemon src/index.js",
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://code.bestbuy.com/stash/scm/~a6001553/hadouken.git"
+	},
+	"dependencies": {
+		"body-parser": "1.19.0",
+		"cors": "2.8.5",
+		"dotenv": "8.2.0",
+		"express": "4.17.1",
+		"morgan": "1.10.0"
+	},
+	"devDependencies": {
+		"@babel/core": "7.10.3",
+		"@babel/node": "7.10.3",
+		"@babel/plugin-transform-modules-commonjs": "7.10.1",
+		"babel-loader": "8.1.0",
+		"clean-webpack-plugin": "3.0.0",
+		"cross-env": "7.0.2",
+		"jest": "26.4.0",
+		"nodemon": "2.0.4",
+		"supertest": "4.0.2",
+		"webpack": "4.43.0",
+		"webpack-cli": "3.3.11",
+		"webpack-node-externals": "1.7.2"
+	},
+	"files": [
+		"dist/server.js",
+		"docker-compose.yml"
+	]
+}
