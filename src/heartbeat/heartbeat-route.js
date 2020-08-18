@@ -1,6 +1,6 @@
 import { Router } from "express"
 import {
-	applicationVersion,
+	applicationVersion, //use this until script in place to bump this first then run build
 	name as applicationName
 } from "../../package"
 

@@ -1,23 +1,9 @@
-import bodyParser from "body-parser"
-import cors from "cors"
-import dotenv from "dotenv"
-import express from "express"
-import morgan from "morgan"
-import { registerRoutes } from "./router/router"
+import { app } from "./app"
+// import { establishConnection } from "./database/database"
 
-dotenv.config({ path: `../../config/${ process.env.ENVIRONMENT }.env` })
-const app = express()
+// establishConnection(() => {
+	const port = process.env.PORT || 1337
+	app.listen(port, () => console.log(`Hadouken is listening on port ${ port } -> http://localhost:${ port } ... ༼つಠ益ಠ༽つ ─=≡ΣO)) `))
+// })
 
-app.use(morgan(process.env.MORGAN_FORMAT, {
-	skip: ({ url }) => url.includes("/favicon.ico")
-}))
-app.disable("etag")
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(cors())
 
-registerRoutes({ app })
-
-export {
-	app
-}

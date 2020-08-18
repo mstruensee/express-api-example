@@ -1,7 +1,7 @@
 import supertest from "supertest"
-import { app } from "../server"
+import { app } from "../app"
 
-describe("heartbeat-controller", () => {
+describe("heartbeat-route", () => {
 	test("/heartbeat", async () => {
 		const response = await supertest(app).get("/heartbeat")
 

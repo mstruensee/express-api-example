@@ -1,0 +1,20 @@
+{
+	"exec": "babel-node",
+	"env": {
+		"NODE_ENV": "development",
+		"PORT": 1337,
+		"MORGAN_FORMAT": "dev",
+		"MYSQL_MAX_RETRIES": 5,
+		"MYSQL_HOST": "localhost",
+		"MYSQL_PORT": 3306,
+		"MYSQL_USER": "root",
+		"MYSQL_PASSWORD": "password1",
+		"MYSQL_DATABASE": "local",
+		"MYSQL_CONNECTION_LIMIT": 300,
+		"MYSQL_WAIT_FOR_CONNECTIONS": true,
+		"MYSQL_QUEUE_LIMIT": 300,
+		"MYSQL_ACQUIRE_TIMEOUT": 60000,
+		"MYSQL_TIMEOUT": 60000,
+		"MYSQL_DEBUG": false
+	}
+}

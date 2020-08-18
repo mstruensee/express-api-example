@@ -1,8 +1,0 @@
-{
-	"exec": "babel-node",
-	"env": {
-		"NODE_ENV": "development",
-		"PORT": 1337,
-		"MORGAN_FORMAT": "dev"
-	}
-}
