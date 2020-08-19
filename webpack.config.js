@@ -1,5 +1,6 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const TerserWebpackPlugin = require("terser-webpack-plugin")
 
 module.exports = {
 	mode: "production",
@@ -11,6 +12,15 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 	},
 	target: "node",
+	optimization: {
+		minimizer: [
+			new TerserWebpackPlugin({
+				terserOptions: {
+					mangle: false //https://github.com/mysqljs/mysql/issues/1655
+				}
+			})
+		]
+	},
 	module: {
 		rules: [
 			{

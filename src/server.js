@@ -1,9 +1,18 @@
 import { app } from "./app"
-// import { establishConnection } from "./database/database"
+import { pool } from "./database/connection-pool"
+import { establishConnection } from "./database/database"
 
-// establishConnection(() => {
-	const port = process.env.PORT || 1337
-	app.listen(port, () => console.log(`Hadouken is listening on port ${ port } -> http://localhost:${ port } ... ༼つಠ益ಠ༽つ ─=≡ΣO)) `))
-// })
+let server
+console.log("Application starting ...")
+establishConnection(() => {
+	const port = process.env.PORT
+	server = app.listen(port, () => console.log(`Application started! -> http://localhost:${ port } ... ༼つಠ益ಠ༽つ ─=≡ΣO)) `))
+})
 
+process.on("SIGTERM", () => {
+	server.close(() => {
+		console.log("Application terminated.")
+		pool.end(() => console.log("Connection pool terminated."))
+	})
+})
 

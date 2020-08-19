@@ -12,17 +12,17 @@ export const establishConnection = cb => {
 			})
 	})
 		.then((connection) => {
-			cb()
 			connection.release()
+			cb()
 		})
 		.catch(error => {
-			console.log("Unable to establish connection, retrying ...")
-			const maxRetries = process.env.MYSQL_MAX_RETRIES || 1
+			console.log("Unable to establish connection, retrying ...", error.message)
+			const maxRetries = process.env.MYSQL_MAX_RETRIES
 			if (retryAttempts >= maxRetries) {
-				console.error(`Max attempts reached (${ retryAttempts }), done retrying ... `, error.message)
+				console.error(`Max attempts reached (${ retryAttempts }), done retrying ...`)
 			} else {
 				retryAttempts++
-				setTimeout(establishConnection, 2000)
+				setTimeout(() => establishConnection(cb), 2000)
 			}
 		})
 }

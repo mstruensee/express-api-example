@@ -6,6 +6,7 @@
 	"main": "dist/server.js",
 	"scripts": {
 		"build": "webpack --progress",
+		"ncu": "ncu -u",
 		"start": "nodemon --config nodemon.local.json src/server.js",
 		"start:dev": "nodemon --config nodemon.dev.json src/server.js",
 		"start:db": "docker-compose -f local-docker-compose.yml up --remove-orphans",
@@ -22,18 +23,20 @@
 		"mysql": "2.18.1"
 	},
 	"devDependencies": {
-		"@babel/core": "7.10.3",
-		"@babel/node": "7.10.3",
-		"@babel/plugin-transform-modules-commonjs": "7.10.1",
+		"@babel/core": "7.11.1",
+		"@babel/node": "7.10.5",
+		"@babel/plugin-transform-modules-commonjs": "7.10.4",
 		"babel-loader": "8.1.0",
 		"clean-webpack-plugin": "3.0.0",
 		"cross-env": "7.0.2",
 		"jest": "26.4.0",
 		"nodemon": "2.0.4",
+		"npm-check-updates": "7.1.1",
 		"supertest": "4.0.2",
-		"webpack": "4.43.0",
-		"webpack-cli": "3.3.11",
-		"webpack-node-externals": "1.7.2"
+		"terser-webpack-plugin": "4.1.0",
+		"webpack": "4.44.1",
+		"webpack-cli": "3.3.12",
+		"webpack-node-externals": "2.5.1"
 	},
 	"files": [
 		"dist/server.js",
