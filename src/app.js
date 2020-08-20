@@ -1,7 +1,10 @@
 import bodyParser from "body-parser"
 import express from "express"
 import morgan from "morgan"
-import { registerRoutes } from "./router/router"
+import {
+	logRegisteredRoutes,
+	registerRoutes,
+} from "./router/router"
 
 const app = express()
 app.use(morgan(process.env.MORGAN_FORMAT, {
@@ -11,6 +14,7 @@ app.disable("etag")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 registerRoutes({ app })
+logRegisteredRoutes({ app })
 
 export {
 	app

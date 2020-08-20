@@ -1,4 +1,5 @@
 import mysql from "mysql"
+import { Logger } from "../logger/logger"
 
 const pool = mysql.createPool({
 	host: process.env.MYSQL_HOST,
@@ -15,16 +16,16 @@ const pool = mysql.createPool({
 })
 
 pool.on("acquire", connection => {
-	console.log(`${ connection.config.host } - connection ${ connection.threadId } acquired from connection pool`)
+	Logger.info(`${ connection.config.host } - connection ${ connection.threadId } acquired from connection pool`)
 })
 pool.on("connection", connection => {
-	console.log(`${ connection.config.host } - new connection initialized to the connection pool`)
+	Logger.info(`${ connection.config.host } - new connection initialized to the connection pool`)
 })
 pool.on("enqueue", () => {
-	console.log("Waiting for available connection from connection poool")
+	Logger.info("Waiting for available connection from connection poool")
 })
 pool.on("release", connection => {
-	console.log(`${ connection.config.host } - connection ${ connection.threadId } released from connection pool`)
+	Logger.info(`${ connection.config.host } - connection ${ connection.threadId } released from connection pool`)
 })
 
 export {
