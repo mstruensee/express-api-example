@@ -2,7 +2,7 @@
 	"name": "hadouken",
 	"version": "0.0.0",
 	"applicationVersion": "0.0.0",
-	"description": "api server.",
+	"description": "api server using express, docker, and nodemon.",
 	"main": "dist/server.js",
 	"scripts": {
 		"build": "webpack --progress",
