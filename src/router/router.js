@@ -1,12 +1,12 @@
 import { healthCheckRouter } from "../health-check/health-check-route"
 import { heartbeatRouter } from "../heartbeat/heartbeat-route"
 import { Logger } from "../logger/logger"
-import { userRouter } from "../user/user-router"
+import { componentRouter } from "../component/component-router"
 
 export const registerRoutes = ({ app }) => {
 	app.use(heartbeatRouter)
 	app.use(healthCheckRouter)
-	app.use(userRouter)
+	app.use(componentRouter)
 }
 
 export const logRegisteredRoutes = ({ app }) => {
