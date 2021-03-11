@@ -1,6 +1,8 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const TerserWebpackPlugin = require("terser-webpack-plugin")
+const WebpackFilterWarningsPlugin = require("webpack-filter-warnings-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
 	mode: "production",
@@ -8,7 +10,7 @@ module.exports = {
 		server: "./src/server.js"
 	},
 	output: {
-		filename: "server.js",
+		filename: "server/index.js",
 		path: path.resolve(__dirname, "dist"),
 	},
 	target: "node",
@@ -34,5 +36,13 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: "./properties", to: "properties" },
+			],
+		}),
+		new WebpackFilterWarningsPlugin({
+			exclude: /the request of a dependency is an expression/
+		})
 	],
 }

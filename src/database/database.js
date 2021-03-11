@@ -1,7 +1,7 @@
 import { Logger } from "../logger/logger"
 import { pool } from "./connection-pool"
 
-let retryAttempts = 0
+let retryAttempts = 1
 
 export const establishConnection = cb => {
 	Logger.info("Attempting to establish database connection ...")
@@ -17,10 +17,11 @@ export const establishConnection = cb => {
 			cb()
 		})
 		.catch(error => {
-			Logger.warn("Unable to establish connection, retrying ...", error.message)
-			const maxRetries = process.env.MYSQL_MAX_RETRIES
+			const maxRetries = process.env.MYSQL_MAX_RETRIES || 5
+
+			Logger.warn(`Unable to establish connection, retrying (${ retryAttempts }/${ maxRetries }) ...`, error.message)
 			if (retryAttempts >= maxRetries) {
-				Logger.error(`Max attempts reached (${ retryAttempts }), done retrying ...`)
+				Logger.error(`Max attempts reached (${ maxRetries }), done retrying ...`)
 			} else {
 				retryAttempts++
 				setTimeout(() => establishConnection(cb), 2000)

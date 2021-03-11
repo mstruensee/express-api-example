@@ -22,12 +22,10 @@ pool.on("connection", connection => {
 	Logger.info(`${ connection.config.host } - new connection initialized to the connection pool`)
 })
 pool.on("enqueue", () => {
-	Logger.info("Waiting for available connection from connection poool")
+	Logger.info("Waiting for available connection from connection pool")
 })
 pool.on("release", connection => {
 	Logger.info(`${ connection.config.host } - connection ${ connection.threadId } released from connection pool`)
 })
 
-export {
-	pool
-}
+export { pool }

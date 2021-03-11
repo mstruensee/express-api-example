@@ -5,9 +5,9 @@ export class ComponentService {
 	static isValidComponentCreateRequest = req => {
 		return Object.keys(req.body).length > 0
 	}
-	static isValidComponentUpdateRequest = req => {
-		return Object.keys(req.body).length > 0
-	}
+	// static isValidComponentUpdateRequest = req => {
+	// 	return Object.keys(req.body).length > 0
+	// }
 
 	static create = (req, res) => {
 		ComponentRepository.create(new ComponentEntity(req.body), (error, data) => {
@@ -33,9 +33,9 @@ export class ComponentService {
 		ComponentRepository.findOne(req.params.packageName, req.params.version, (error, data) => {
 			if (error) {
 				if (error.kind === "not_found") {
-					res.status(404).send({ message: `Not found Component with id ${ req.params.id }.` })
+					res.status(404).send({ message: `Not found Component with packageName ${ req.params.packageName } and version ${ req.params.version }.` })
 				} else {
-					res.status(500).send({ message: `Error retrieving Component with id ${ req.params.id }.` })
+					res.status(500).send({ message: `Error retrieving Component with packageName ${ req.params.packageName } and version ${ req.params.version }.` })
 				}
 			} else {
 				res.send(data)

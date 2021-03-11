@@ -16,6 +16,4 @@ app.use(bodyParser.json())
 registerRoutes({ app })
 logRegisteredRoutes({ app })
 
-export {
-	app
-}
+export { app }

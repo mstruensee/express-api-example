@@ -1,20 +1,17 @@
 {
-	"name": "hadouken",
+	"name": "express-api-example",
 	"version": "0.0.0",
 	"applicationVersion": "0.0.0",
 	"description": "api server using express, docker, and nodemon.",
-	"main": "dist/server.js",
+	"main": "dist/server/index.js",
 	"scripts": {
 		"build": "webpack --progress",
 		"ncu": "ncu -u",
-		"start": "nodemon --config nodemon.local.json src/server.js",
-		"start:dev": "nodemon --config nodemon.dev.json src/server.js",
+		"start": "nodemon --exec babel-node src/server.js",
+		"start:local": "cross-env NODE_ENV=development npm run start",
+		"start:dev": "cross-env DEBUG=true NODE_ENV=development npm run start",
 		"start:db": "docker-compose -f local-docker-compose.yml up --remove-orphans",
 		"test": "jest"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://code.bestbuy.com/stash/scm/~a6001553/hadouken.git"
 	},
 	"dependencies": {
 		"body-parser": "1.19.0",
@@ -23,24 +20,27 @@
 		"mysql": "2.18.1"
 	},
 	"devDependencies": {
-		"@babel/core": "7.13.8",
-		"@babel/node": "7.13.0",
+		"@babel/core": "7.13.10",
+		"@babel/node": "7.13.10",
 		"@babel/plugin-proposal-class-properties": "7.13.0",
 		"@babel/plugin-transform-modules-commonjs": "7.13.8",
 		"babel-loader": "8.2.2",
 		"clean-webpack-plugin": "3.0.0",
+		"copy-webpack-plugin": "8.0.0",
 		"cross-env": "7.0.3",
+		"dotenv": "8.2.0",
 		"jest": "26.6.3",
 		"nodemon": "2.0.7",
-		"npm-check-updates": "11.1.10",
+		"npm-check-updates": "11.2.0",
 		"supertest": "6.1.3",
 		"terser-webpack-plugin": "5.1.1",
-		"webpack": "5.24.3",
+		"webpack": "5.24.4",
 		"webpack-cli": "4.5.0",
-		"webpack-node-externals": "2.5.2"
+		"webpack-filter-warnings-plugin": "1.2.1"
 	},
 	"files": [
-		"dist/server.js",
+		"dist/server/index.js",
+		"dist/properties",
 		"docker-compose.yml"
 	]
 }
